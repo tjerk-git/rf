@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ title }}</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <main>
+            <header>
+                <nav class="main-menu">
+                    <ul>
+                        <li>roelof schipper</li>
+                        <li><a href="/publicaties/" {% if page.url == '/publicaties/' %}class="active"{% endif %}>publicaties</a></li>
+                    </ul>
+                </nav>
+            </header>
+            {{ content | safe }}
+            <section>
+                <nav class="main-menu">
+                    <ul>
+                        <li>contact</li>
+                        <li><a href="/bio/" {% if page.url == '/bio/' %}class="active"{% endif %}>bio</a></li>
+                    </ul>
+                </nav>
+                <nav class="extra-menu">
+                    <ul>
+                        <li>&c.1</li>
+                        <li>&c.2</li>
+                    </ul>
+                </nav>
+                <div class="little-footer-stripe"></div>
+                <p>[website credits]</p>
+              </section>
+        </main>
+    </body>
+</html>

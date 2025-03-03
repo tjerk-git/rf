@@ -1,0 +1,24 @@
+{
+  "name": "rf",
+  "version": "1.0.0",
+  "description": "Personal website of Roelof Schipper",
+  "main": "index.js",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tjerk-git/rf.git"
+  },
+  "keywords": [],
+  "author": "Roelof Schipper",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tjerk-git/rf/issues"
+  },
+  "homepage": "https://github.com/tjerk-git/rf#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}
