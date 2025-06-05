@@ -146,6 +146,10 @@ a {
     list-style-type: none;
 }
 
+.main-menu a{
+    color:#333333;
+}
+
 .extra-menu {
     display: flex;
     justify-content: flex-end;
@@ -431,6 +435,10 @@ a {
         align-items: center;
         gap: 0.5rem;
     }
+}
+
+.align-left{
+    float:left;
 }
 
 @media screen and (max-width: 480px) {
