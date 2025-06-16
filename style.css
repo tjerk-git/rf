@@ -150,6 +150,10 @@ a {
     color:#333333;
 }
 
+.main-menu a:hover{
+    color:#288f68;
+}
+
 .extra-menu {
     display: flex;
     justify-content: flex-end;

@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{ title }}</title>
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=eb-garamond:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet" />
+        <link
+            href="https://fonts.bunny.net/css?family=eb-garamond:400,400i,500,500i,600,600i,700,700i,800,800i"
+            rel="stylesheet"/>
         <link rel="stylesheet" href="/style.css">
     </head>
     <body>
@@ -13,12 +15,21 @@
             <header>
                 <nav class="main-menu">
                     <ul>
-                        <li><a href="/">roelof schipper</a></li>
+                        <li>
+                            <a href="/">roelof schipper</a>
+                        </li>
                         <ul class="sub-menu">
-                            <li><a href="/bleke-gesp-beige-zoom">debuut / ‘bleke gesp, beige zoom’ in het najaar (‘25)</a></li>
+                            <li>
+                                <a href="/bleke-gesp-beige-zoom">debuut / ‘bleke gesp, beige zoom’ in het najaar (‘25)</a>
+                            </li>
                             <li>bij uitgeverij vleugels.</li>
                             <li><br></li>
-                            <li><a href="/publicaties/" {% if page.url == '/publicaties/' %}class="active"{% endif %}>bleke gesp, beige zoom . losse publicaties</a></li>
+                            <li>
+                                <a href="/bleke-gesp-beige-zoom/" {% if page.url == '/bleke-gesp-beige-zoom/' %} class="active" {% endif %}>bleke gesp,
+                                                                       beige zoom .
+                                    <a href="/publicaties">losse publicaties</a>
+                                </li>
+                            </li>
                         </ul>
                     </ul>
                 </nav>
@@ -27,8 +38,8 @@
             <section>
                 <nav class="main-menu">
                     <ul>
-                        <li><a href="/contact/" {% if page.url == '/contact/' %}class="active"{% endif %}>contact</a></li>
-                        <li><a href="/bio/" {% if page.url == '/bio/' %}class="active"{% endif %}>bio</a></li>
+                        <li><a href="/contact/"{% if page.url == '/contact/' %} class="active"{% endif %}>contact</a></li>
+                        <li><a href="/bio/"{% if page.url == '/bio/' %} class="active"{% endif %}>bio</a></li>
                     </ul>
                 </nav>
                 <nav class="extra-menu">
@@ -38,8 +49,10 @@
                     </ul>
                 </nav>
                 <div class="little-footer-stripe"></div>
-                <p>[online gezet door <a target="_blank" href="https://potloodgum.com">potloodgum]</a></p>
-              </section>
+                <p>[online gezet door
+                    <a target="_blank" href="https://potloodgum.com">potloodgum]</a>
+                </p>
+            </section>
         </main>
     </body>
 </html>
