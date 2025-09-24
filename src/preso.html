@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GIF Slideshow</title>
+<style>
+  /* Reset */
+  html, body { height: 100%; margin: 0; background: #000; }
+  body { overflow: hidden; }
+
+  /* Container holding two layers for crossfade */
+  .slideshow {
+    position: fixed;
+    inset: 0;
+    background: #000;
+  }
+
+  .layer {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 1s ease; /* crossfade duration */
+    background: #000;
+  }
+
+  .layer.visible { opacity: 1; }
+
+  /* Image should cover the entire screen while preserving aspect ratio */
+  .layer img {
+    max-width: none;
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain; /* use cover if you want to crop instead */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+  }
+
+  /* Start overlay */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.9);
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    padding: 24px;
+  }
+  .overlay.hidden { display: none; }
+  .overlay .hint { opacity: 0.7; font-size: 16px; margin-top: 8px; }
+
+  /* Small preload progress */
+  .progress { margin-top: 10px; font-size: 14px; opacity: 0.8; }
+</style>
+</head>
+<body>
+  <div class="slideshow" aria-live="off" aria-hidden="true">
+    <div class="layer" id="layerA"><img alt="" /></div>
+    <div class="layer" id="layerB"><img alt="" /></div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div>
+      <div>klik om te beginnen</div>
+      <div class="progress" id="progress">r/preso/2025</div>
+    </div>
+  </div>
+
+<script>
+(function() {
+  const IMAGE_FILES = [
+    '/img/02.gif','/img/03.gif','/img/04.gif','/img/05.gif','/img/06.gif',
+    '/img/07.gif','/img/09.gif','/img/10.gif','/img/11.gif','/img/12.gif'
+  ];
+
+  const DISPLAY_MS = 10000; // 10 seconds each
+  const FADE_MS = 1000;     // 1 second crossfade
+
+  const overlay = document.getElementById('overlay');
+  const progress = document.getElementById('progress');
+  const layerA = document.getElementById('layerA');
+  const layerB = document.getElementById('layerB');
+  const imgA = layerA.querySelector('img');
+  const imgB = layerB.querySelector('img');
+
+  let preloaded = [];
+  let order = [];
+  let index = 0;
+  let activeIsA = true;
+  let timer = null;
+
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  function preloadImages(paths, onProgress) {
+    return Promise.all(paths.map((src, i) => new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => { onProgress(i + 1, paths.length); resolve({ src, img }); };
+      img.onerror = () => { onProgress(i + 1, paths.length); resolve({ src, img }); };
+      img.src = src;
+    })));
+  }
+
+  function setImage(el, src) {
+    el.setAttribute('src', src);
+  }
+
+  function getNextSrc() {
+    const src = order[index % order.length];
+    index += 1;
+    if (index % order.length === 0) {
+      order = shuffle(order.slice());
+    }
+    return src;
+  }
+
+  function crossfadeTo(src) {
+    if (activeIsA) {
+      setImage(imgB, src);
+      // ensure the browser applies src before toggling
+      requestAnimationFrame(() => {
+        layerB.classList.add('visible');
+        setTimeout(() => layerA.classList.remove('visible'), FADE_MS);
+        activeIsA = false;
+      });
+    } else {
+      setImage(imgA, src);
+      requestAnimationFrame(() => {
+        layerA.classList.add('visible');
+        setTimeout(() => layerB.classList.remove('visible'), FADE_MS);
+        activeIsA = true;
+      });
+    }
+  }
+
+  async function start() {
+    // Initialize order
+    order = shuffle(IMAGE_FILES.slice());
+
+    // Preload first
+    progress.textContent = 'Preloading 0/' + IMAGE_FILES.length + '…';
+    preloaded = await preloadImages(IMAGE_FILES, (done, total) => {
+      progress.textContent = `Preloading ${done}/${total}…`;
+    });
+    progress.textContent = 'Ready';
+
+    // First image visible immediately
+    const first = getNextSrc();
+    setImage(imgA, first);
+    layerA.classList.add('visible');
+    activeIsA = true;
+
+    // Hide overlay and go fullscreen
+    await requestFullscreenSafe();
+    overlay.classList.add('hidden');
+
+    // Start loop
+    scheduleNext();
+  }
+
+  function scheduleNext() {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      const next = getNextSrc();
+      crossfadeTo(next);
+      scheduleNext();
+    }, DISPLAY_MS);
+  }
+
+  async function requestFullscreenSafe() {
+    const el = document.documentElement;
+    try {
+      if (el.requestFullscreen) { await el.requestFullscreen(); }
+      else if (el.webkitRequestFullscreen) { await el.webkitRequestFullscreen(); }
+      else if (el.msRequestFullscreen) { await el.msRequestFullscreen(); }
+    } catch (_) {}
+  }
+
+  // Start on click/tap
+  overlay.addEventListener('click', start, { once: true });
+  overlay.addEventListener('touchstart', start, { once: true });
+
+  // Allow ESC to exit fullscreen; keep slideshow running regardless
+  document.addEventListener('fullscreenchange', () => {
+    // no-op; could show a hint if exited
+  });
+})();
+</script>
+</body>
+</html>
