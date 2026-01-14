@@ -1,61 +1,81 @@
 <!DOCTYPE html>
 <html lang="nl">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ title }}</title>
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link
-            href="https://fonts.bunny.net/css?family=eb-garamond:400,400i,500,500i,600,600i,700,700i,800,800i"
-            rel="stylesheet"/>
-        <link rel="stylesheet" href="/style.css">
-    </head>
-    <body>
-        <main>
-            <header>
-                <nav class="main-menu">
-                    <ul>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=eb-garamond:400,400i,500,500i,600,600i,700,700i,800,800i"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <main>
+        <header>
+            <nav class="main-menu">
+                <ul>
+                    <li>
+                        <a href="/">roelof schipper</a>
+                    </li>
+                    <ul class="sub-menu">
                         <li>
-                            <a href="/">roelof schipper</a>
+                            <a href="/bleke-gesp-beige-zoom">
+                                debuut / ‘bleke gesp, beige zoom’ +
+                                bibliofiele ltd. uitgave ‘zoom om zoom’
+                                oktober ‘25 bij uitgeverij vleugels.
+
+                            </a>
                         </li>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="/bleke-gesp-beige-zoom">
-                                    debuut / ‘bleke gesp, beige zoom’ + bibliofiele ltd. uitgave ‘zoom om zoom’ oktober ‘25 bij uitgeverij vleugels.
-                                </a>
-                            </li>
-                            <li><br></li>
-                            <li>
-                                <a href="/bleke-gesp-beige-zoom/" {% if page.url == '/bleke-gesp-beige-zoom/' %} class="active" {% endif %}>bleke gesp,
-                                    beige zoom .
-                                    <a href="/publicaties" {% if page.url == '/publicaties/' %} class="active" {% endif %}>losse publicaties</a>
-                                    <a href="/de-optimist" {% if page.url == '/de-optimist/' %} class="active" {% endif %}>. de optimist poëzine.
-                                    </a>
-                                </li>
-                            </li>
-                        </ul>
+                        <li><br></li>
+                        <li>
+
+                            <a href="/bleke-gesp-beige-zoom/" {% if page.url=='/bleke-gesp-beige-zoom/' %}
+                                class="active" {% endif %}>bleke gesp,
+                                beige zoom .
+                                <a href="/publicaties" {% if page.url=='/publicaties/' %} class="active" {% endif
+                                    %}>losse publicaties</a>
+                        </li>
+                        </li>
                     </ul>
-                </nav>
-            </header>
-            {{ content | safe }}
-            <section>
-                <nav class="main-menu">
-                    <ul>
-                        <li><a href="/contact/"{% if page.url == '/contact/' %} class="active"{% endif %}>contact</a></li>
-                        <li><a href="/bio/"{% if page.url == '/bio/' %} class="active"{% endif %}>bio</a></li>
-                    </ul>
-                </nav>
-                <nav class="extra-menu">
-                    <ul>
-                        <li><a href="/etc/">&c.1</a></li>
-                        <li><a href="/etc-2/">&c.2</a></li>
-                    </ul>
-                </nav>
-                <div class="little-footer-stripe"></div>
-                <p>[online gezet door
-                    <a target="_blank" href="https://potloodgum.com">potloodgum]</a>
-                </p>
-            </section>
-        </main>
-    </body>
+                </ul>
+            </nav>
+        </header>
+        {{ content | safe }}
+        <section>
+            <nav class="main-menu">
+                <ul>
+                    <li><a href="/contact/" {% if page.url=='/contact/' %} class="active" {% endif %}>contact</a></li>
+                    <li><a href="/bio/" {% if page.url=='/bio/' %} class="active" {% endif %}>bio</a></li>
+                </ul>
+            </nav>
+            <nav class="extra-menu">
+                <ul>
+                    <li><a href="/etc/">&c.1</a></li>
+                    <li><a href="/etc-2/">&c.2</a></li>
+                </ul>
+            </nav>
+            <div class="little-footer-stripe"></div>
+            <p>[online gezet door
+                <a target="_blank" href="https://potloodgum.com">potloodgum]</a>
+            </p>
+        </section>
+
+        {% if page.url == '/' %}
+        <a href="https://www.tzum.info/2025/12/recensie-roelof-schipper-bleke-gesp-beige-zoom/" target="_blank"
+            style="position:relative;">
+            <img src="/img/afb2.jpg" alt="Recensie afb 2" style="max-width: 450px; margin-bottom: 10px; float:left; ">
+
+            <a href="https://www.tzum.info/2025/12/recensie-roelof-schipper-bleke-gesp-beige-zoom/"
+                style="position:absolute; right:780px; width:120px;"
+                target="_blank">https://www.tzum.info/2025/12/recensie-roelof-schipper-bleke-gesp-beige-zoom/</a>
+            <img src="/img/afb1.jpg" alt="Recensie afb 1"
+                style="max-width: 350px; margin-bottom: 10px;  float:right; margin-right:180px;">
+        </a>
+        {% endif %}
+
+    </main>
+</body>
+
 </html>
