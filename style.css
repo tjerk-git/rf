@@ -498,6 +498,45 @@ a {
     float: left;
 }
 
+/* Review Section Layout */
+.review-section {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    align-items: flex-start;
+    clear: both;
+}
+
+.review-image {
+    float: left;
+    max-width: 350px;
+    width: 100%;
+    height: auto;
+}
+
+.review-text {
+    flex: 1;
+    padding-left: 1rem;
+}
+
+.review-text p {
+    margin: 0.5rem 0;
+    color: #595959;
+    font-size: 1rem;
+}
+
+.review-text a {
+    color: #288f68;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+    word-wrap: break-word;
+}
+
+.review-text a:hover {
+    text-decoration: underline;
+}
+
 @media screen and (max-width: 480px) {
     body {
         font-size: 14px;
@@ -511,5 +550,18 @@ a {
 
     .publicatie p {
         font-size: 0.75rem;
+    }
+
+    .review-section {
+        flex-direction: column;
+    }
+
+    .review-image {
+        float: none;
+        max-width: 100%;
+    }
+
+    .review-text {
+        padding-left: 0;
     }
 }
