@@ -456,6 +456,32 @@ a {
     margin-bottom: 0.5rem;
 }
 
+.poem-block p {
+    margin-bottom: 1.5rem;
+}
+
+.poem-block .indent-1 {
+    margin-left: 3rem;
+}
+
+.poem-block .indent-2 {
+    margin-left: 8rem;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 400;
+    color: #5A5A5A;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .main-menu>ul {
         flex-direction: column;
