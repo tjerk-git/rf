@@ -200,19 +200,39 @@ a {
 
 .bio-image {
     width: 250px;
+    height: auto;
 }
 
 .bio-figure {
-    width: fit-content;
+    width: 100%;
     margin: 0;
+}
+
+.bio-portraits {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.bio-image-1 {
+    margin-left: 0.5rem;
+}
+
+.bio-image-2 {
+    margin-left: 1.5rem;
 }
 
 .photo-credit-new {
     font-size: 0.8rem;
     color: #288f68;
     margin-top: 0.5rem;
+    margin-left: 8rem;
     font-style: italic;
-    text-align: right;
+    text-align: left;
+}
+
+.photo-credit-new a {
+    color: #288f68;
 }
 
 .bio-intro p {
@@ -229,9 +249,9 @@ a {
 
 .notebook-section {
     display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin: 2rem 0;
+    align-items: flex-start;
+    gap: 3rem;
+    margin: 4rem 0 2rem 4rem;
 }
 
 .notebook-image {
@@ -239,22 +259,17 @@ a {
     height: auto;
 }
 
-.notebook-link {
-    font-size: 1.1rem;
-    color: #595959;
-}
-
-.notebook-link a {
-    color: #333333;
-    text-decoration: underline;
-    font-weight: bold;
+.zoom-image {
+    width: 185px;
+    height: auto;
 }
 
 .bio-footer-text {
     font-style: italic;
     font-size: 0.95rem;
-    color: #595959;
+    color: #333333;
     max-width: 500px;
+    margin-left: 1rem;
 }
 
 .bio-footer-text p {
@@ -262,9 +277,7 @@ a {
 }
 
 .bio-external-link {
-    border: 1px solid #4a90e2;
-    padding: 1rem;
-    margin-top: 2rem;
+    margin: 2rem 0 0 1rem;
     color: blue;
     font-size: 0.9rem;
     max-width: 600px;
@@ -272,7 +285,7 @@ a {
 
 .bio-external-link a {
     color: blue;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .publicaties {
